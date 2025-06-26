@@ -23,9 +23,17 @@ const Home = () => {
           }
         })
         .catch((err) => {
-          console.error("API fetch failed:", err);
-          setLoading(false);
-        });
+        console.warn("Using fallback mock data due to API failure.");
+        const mockData = [
+          { id: 1, employee_name: "Tiger Nixon", employee_salary: 320800, employee_age: 61 },
+          { id: 2, employee_name: "Garrett Winters", employee_salary: 170750, employee_age: 63 },
+          { id: 3, employee_name: "Ashton Cox", employee_salary: 86000, employee_age: 66 },
+          // Add more mock entries
+        ];
+        setEmployees(mockData);
+        setFilteredEmployees(mockData);
+        setLoading(false);
+      });
   }, []);
 
   const handleSearch = (id) => {
